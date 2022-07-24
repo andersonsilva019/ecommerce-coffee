@@ -1,7 +1,15 @@
+import { ThemeProvider } from "styled-components"
+import { Home } from "./pages/Home"
+import { GlobalStyles } from "./styles/GlobalStyles"
+import { defaultTheme } from "./styles/theme/default"
+
 function App() {
 
   return (
-    <h1>Hello</h1>
+    <ThemeProvider theme={defaultTheme}>
+      <GlobalStyles />
+      <Home />
+    </ThemeProvider>
   )
 }
 
