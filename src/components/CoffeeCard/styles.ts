@@ -82,14 +82,14 @@ export const Badge = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors['yellow-300']};
     color: ${theme.colors['yellow-900']};
-    padding: 0.25rem 0.75rem;
+    padding: 0.25rem 0.5rem;
 
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 100px;
 
-    font-size: ${theme.fonts['12px']};
+    font-size: ${theme.fonts['10px']};
     font-weight: 700;
     text-transform: uppercase;
 
@@ -170,4 +170,9 @@ export const AddToCartButton = styled.button`
   background-color: ${({ theme }) => theme.colors['purple-900']};
   border: none;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover{
+    background-color: ${({ theme }) => theme.colors['purple-500']};
+  }
 `
