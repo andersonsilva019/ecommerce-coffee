@@ -16,6 +16,9 @@ export function CoffeeCard({
   flavors,
   imgUrl
 }: CoffeeCartProps) {
+
+  const formatPrice = price.split(' ')
+
   return (
     <S.CoffeeCardContainer>
       <S.ImageBox>
@@ -36,7 +39,7 @@ export function CoffeeCard({
 
       <S.CoffeeCardFooter>
         <S.Price>
-          R$ <span>{price}</span>
+          {formatPrice[0]} <span>{formatPrice[1]}</span>
         </S.Price>
         <S.CoffeeCardFooterRightSide>
           <S.Amount>
