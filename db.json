@@ -1,0 +1,154 @@
+{
+  "coffees": [
+    {
+      "id": 1,
+      "name": "Expresso Tradicional",
+      "description": "O tradicional café feito com água quente e grãos moídos",
+      "price": "R$ 9,90",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage.svg?alt=media&token=6ca59bfa-2c82-4225-a256-f32ca63c0a91",
+      "flavors": [
+        "Tradicional"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Expresso Americano",
+      "description": "Expresso diluído, menos intenso que o tradicional",
+      "price": "R$ 10,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-1.svg?alt=media&token=5bb1a6b3-4ffa-46d5-bd52-8e2038a25fa9",
+      "flavors": [
+        "Tradicional"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Expresso Cremoso",
+      "description": "Café expresso tradicional com espuma cremosa",
+      "price": "R$ 12,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-2.svg?alt=media&token=40bb39a5-f3b1-44c7-88df-47fee69fa6fe",
+      "flavors": [
+        "Tradicional"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Expresso Gelado",
+      "description": "Bebida preparada com café expresso e cubos de gelo",
+      "price": "R$ 13,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-3.svg?alt=media&token=691ed8e1-6f3a-444e-87c3-c33a4f2cdad8",
+      "flavors": [
+        "Tradicional",
+        "Gelado"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Café com Leite",
+      "description": "Meio a meio de expresso tradicional com leite vaporizado",
+      "price": "R$ 5,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-4.svg?alt=media&token=a1507011-4c4a-4449-b776-14f8f1d93d6a",
+      "flavors": [
+        "Tradicional",
+        "Com leite"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Latte",
+      "description": "Uma dose de café expresso com o dobro de leite e espuma cremosa",
+      "price": "R$ 7,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-5.svg?alt=media&token=b060fe4f-b4e6-47a4-be08-301bc5bf1c87",
+      "flavors": [
+        "Tradicional",
+        "Com leite"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Capuccino",
+      "description": "CBebida com canela feita de doses iguais de café, leite e espuma",
+      "price": "R$ 8,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-6.svg?alt=media&token=5f4acfe5-4221-44f6-8e5f-65d8cd2e1fa7",
+      "flavors": [
+        "Tradicional",
+        "Com leite"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Macchiato",
+      "description": "Café expresso misturado com um pouco de leite quente e espuma",
+      "price": "R$ 7,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-7.svg?alt=media&token=1658cce0-3d91-4e4a-8b72-69493f06aa17",
+      "flavors": [
+        "Tradicional",
+        "Com leite"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Mocaccino",
+      "description": "Café expresso com calda de chocolate, pouco leite e espuma",
+      "price": "R$ 8,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-8.svg?alt=media&token=73897a71-4400-4093-b852-d8c192eae427",
+      "flavors": [
+        "Tradicional",
+        "Com leite"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Chocolate Quente",
+      "description": "Bebida feita com chocolate dissolvido no leite quente e café",
+      "price": "R$ 7,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-9.svg?alt=media&token=5805aa5f-1925-4046-aa34-36bbf95eb1dd",
+      "flavors": [
+        "Especial",
+        "Com leite"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Cubano",
+      "description": "Drink gelado de café expresso com rum, creme de leite e hortelã",
+      "price": "R$ 10,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-10.svg?alt=media&token=02f5ebce-ad07-4232-8c82-aa36105910ae",
+      "flavors": [
+        "Especial",
+        "Alcoólico",
+        "Gelado"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Havaiano",
+      "description": "Bebida adocicada preparada com café e leite de coco",
+      "price": "R$ 10,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-11.svg?alt=media&token=e162061e-7423-4575-aabd-04e5f96c9b39",
+      "flavors": [
+        "Especial"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Árabe",
+      "description": "Bebida preparada com grãos de café árabe e especiarias",
+      "price": "R$ 10,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-12.svg?alt=media&token=2a063b4e-3253-4dff-bdd3-955bcb3b32b3",
+      "flavors": [
+        "Especial"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Irlandês",
+      "description": "Bebida a base de café, uísque irlandês, açúcar e chantilly",
+      "price": "R$ 13,00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-13.svg?alt=media&token=242ebbb6-01cb-4b9f-b35a-cec0318fb327",
+      "flavors": [
+        "Especial",
+        "Alcoólico"
+      ]
+    }
+  ]
+}
