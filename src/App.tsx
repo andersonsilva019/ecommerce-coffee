@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components"
-import { Home } from "./pages/Home"
+import { RootRoutes } from "./Routes"
 import { GlobalStyles } from "./styles/GlobalStyles"
 import { defaultTheme } from "./styles/theme/default"
 
@@ -8,7 +8,7 @@ function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles />
-      <Home />
+      <RootRoutes />
     </ThemeProvider>
   )
 }
