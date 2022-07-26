@@ -157,6 +157,11 @@ export const AmountButton = styled.button`
   font-size: 1rem;
   color: ${({ theme }) => theme.colors['purple-500']};
   cursor: pointer;
+
+  :disabled{
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
   `
 
 export const AddToCartButton = styled.button`
@@ -174,5 +179,28 @@ export const AddToCartButton = styled.button`
 
   &:hover{
     background-color: ${({ theme }) => theme.colors['purple-500']};
+  }
+`
+
+export const RemoveToCartButton = styled.button`
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  background-color: ${({ theme }) => theme.colors['gray-700']};
+  color: ${({ theme }) => theme.colors['black-900']};
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: ${({ theme }) => theme.fonts['14px']};
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 160%;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors['gray-900']};
   }
 `

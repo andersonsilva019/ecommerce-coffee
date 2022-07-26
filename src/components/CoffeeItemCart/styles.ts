@@ -101,6 +101,11 @@ export const AmountButton = styled.button`
   font-size: 1rem;
   color: ${({ theme }) => theme.colors['purple-500']};
   cursor: pointer;
+
+  :disabled{
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
 `
 export const RemoveToCartButton = styled.button`
   border: 0;
@@ -118,4 +123,10 @@ export const RemoveToCartButton = styled.button`
   font-weight: 400;
   line-height: 160%;
   cursor: pointer;
+
+  transition: background-color 0.2s ease-in-out;
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors['gray-900']};
+  }
 `

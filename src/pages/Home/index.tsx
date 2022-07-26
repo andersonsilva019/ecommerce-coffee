@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import landingPageImage from '../../assets/landing-page-image.svg'
 import { CoffeeCard } from "../../components/CoffeeCard";
+import { coffeeService } from "../../services/coffees";
 
 import * as S from './styles'
 
@@ -30,7 +32,38 @@ const benefitsEcommerceCoffee: BenefitsEcommerceCoffeeType = {
   }
 }
 
+type Coffee = {
+  id: number
+  name: string
+  price: number
+  description: string
+  flavors: string[]
+  image: string
+  amount: number
+}
+
 export function Home() {
+
+  const [coffees, setCoffees] = useState<Coffee[]>([]);
+
+  useEffect(() => {
+    async function fetchCoffees() {
+      try {
+        const data = await coffeeService.getCoffees()
+
+        setCoffees(data.map(coffee => ({
+          ...coffee,
+          amount: 1
+        })));
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchCoffees();
+  }, [])
+
   return (
     <S.HomeContainer>
       <S.BrandingSection>
@@ -51,55 +84,18 @@ export function Home() {
       <S.CoffeesSection>
         <h2>Nossos cafés</h2>
         <S.Coffees>
-          <CoffeeCard
-            name="Expresso Tradicional"
-            description="O tradicional café feito com água quente e grãos moídos"
-            price="R$ 5,00"
-            flavors={['Tradicional']}
-            imgUrl="https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-1.svg?alt=media&token=5bb1a6b3-4ffa-46d5-bd52-8e2038a25fa9"
-          />
-          <CoffeeCard
-            name="Expresso Tradicional"
-            description="O tradicional café feito com água quente e grãos moídos"
-            price="R$ 5,00"
-            flavors={['Tradicional']}
-            imgUrl="https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-1.svg?alt=media&token=5bb1a6b3-4ffa-46d5-bd52-8e2038a25fa9"
-          />
-          <CoffeeCard
-            name="Expresso Tradicional"
-            description="O tradicional café feito com água quente e grãos moídos"
-            price="R$ 5,00"
-            flavors={['Tradicional']}
-            imgUrl="https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-1.svg?alt=media&token=5bb1a6b3-4ffa-46d5-bd52-8e2038a25fa9"
-          />
-          <CoffeeCard
-            name="Expresso Tradicional"
-            description="O tradicional café feito com água quente e grãos moídos"
-            price="R$ 5,00"
-            flavors={['Tradicional']}
-            imgUrl="https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-1.svg?alt=media&token=5bb1a6b3-4ffa-46d5-bd52-8e2038a25fa9"
-          />
-          <CoffeeCard
-            name="Expresso Tradicional"
-            description="O tradicional café feito com água quente e grãos moídos"
-            price="R$ 5,00"
-            flavors={['Tradicional']}
-            imgUrl="https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-1.svg?alt=media&token=5bb1a6b3-4ffa-46d5-bd52-8e2038a25fa9"
-          />
-          <CoffeeCard
-            name="Expresso Tradicional"
-            description="O tradicional café feito com água quente e grãos moídos"
-            price="R$ 5,00"
-            flavors={['Tradicional']}
-            imgUrl="https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-1.svg?alt=media&token=5bb1a6b3-4ffa-46d5-bd52-8e2038a25fa9"
-          />
-          <CoffeeCard
-            name="Expresso Tradicional"
-            description="O tradicional café feito com água quente e grãos moídos"
-            price="R$ 5,00"
-            flavors={['Tradicional']}
-            imgUrl="https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-1.svg?alt=media&token=5bb1a6b3-4ffa-46d5-bd52-8e2038a25fa9"
-          />
+          {coffees.map(coffee => (
+            <CoffeeCard
+              key={coffee.id}
+              id={coffee.id}
+              name={coffee.name}
+              description={coffee.description}
+              price={coffee.price}
+              flavors={coffee.flavors}
+              imgUrl={coffee.image}
+              amount={coffee.amount}
+            />
+          ))}
         </S.Coffees>
       </S.CoffeesSection>
     </S.HomeContainer>

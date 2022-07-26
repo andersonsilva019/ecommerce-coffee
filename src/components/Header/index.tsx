@@ -1,12 +1,13 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
+import { useCart } from '../../hooks/useCart';
 
 import * as S from './styles'
 
 export function Header() {
 
-  const total = 0;
+  const { cartItens } = useCart()
 
   return (
     <S.HeaderContainer>
@@ -21,7 +22,7 @@ export function Header() {
         </S.Locale>
         <Link to="/checkout">
           <S.Cart>
-            {total > 0 && <S.TotalCart>{total}</S.TotalCart>}
+            {cartItens.length > 0 && <S.TotalCart>{cartItens.length}</S.TotalCart>}
             <ShoppingCart size={24} weight="fill" color="#C47F17" />
           </S.Cart>
         </Link>

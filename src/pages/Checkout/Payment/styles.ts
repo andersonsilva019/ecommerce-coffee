@@ -64,6 +64,12 @@ const BaseButton = styled.button`
     line-height: 160%;
     text-transform: uppercase;
   }
+  
+  transition: background-color 0.2s ease-in-out;
+  
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray-900']};
+  }
 `
 
 export const CreditCardButton = styled(BaseButton)``
