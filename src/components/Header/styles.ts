@@ -38,4 +38,27 @@ export const Cart = styled.div`
   justify-content: center;
 
   padding: 0.625rem 0.5rem;
+
+  position: relative;
+`
+
+export const TotalCart = styled.div`
+  position: absolute;
+  background-color: ${({ theme }) => theme.colors['yellow-900']};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  top: -0.5rem;
+  right: -0.5rem;
+  padding: 0.25rem;
+  border-radius: 50%;
+
+  font-size: ${({ theme }) => theme.fonts['12px']};
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: 700;
+
+  height: 20px;
+  width: 20px;
 `
