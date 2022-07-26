@@ -2,16 +2,26 @@ import { Trash } from "phosphor-react";
 
 import * as S from './styles'
 
-export function CoffeeItemCart() {
+export type CoffeeItemCartProps = {
+  imgUrl: string
+  name: string
+  price: string
+}
+
+export function CoffeeItemCart({
+  imgUrl,
+  name,
+  price
+}: CoffeeItemCartProps) {
   return (
     <S.CoffeeItemCartContainer>
       <S.ImageBox>
-        <img src="https://firebasestorage.googleapis.com/v0/b/my-blog-a74d5.appspot.com/o/coffee-images%2FImage-13.svg?alt=media&token=242ebbb6-01cb-4b9f-b35a-cec0318fb327" alt="" />
+        <img src={imgUrl} alt="" />
       </S.ImageBox>
       <S.Content>
         <S.HeaderContent>
-          <span>Expresso tradicional</span>
-          <strong>R$ 10,00</strong>
+          <span>{name}</span>
+          <strong>{price}</strong>
         </S.HeaderContent>
         <S.FooterContent>
           <S.Amount>
