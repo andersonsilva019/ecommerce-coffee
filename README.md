@@ -35,7 +35,7 @@
 
 <img src="https://res.cloudinary.com/drsxhihfr/image/upload/v1658962915/images/banner_ysirkh.png">
 
-## :computer: Clone-Netflix
+## :computer: Ecommerce Coffee
 
 Esse projeto tem por finalidade aprimorar o desenvolvimento de um projeto de e-commerce com o React. Toda a estilização do projeto foi feita pelo styled-components. Para a parte do formulário de endereço de entrega, foi utilizado a biblioteca formik. Escolhi o formik para poder testar essa ferramenta.
 
@@ -55,12 +55,3 @@ Para realizar a simulação de chamadas a API, foi utilizado o json-server confi
 - React Router
 - Json-server
 - Yup
-
-## Demonstrações
-
-### Página Inicial
-
-<video width="100%" height="440" controls>
-  <source src="" type="video/mp4"/>
-  Your browser does not support the video tag.
-</video>
