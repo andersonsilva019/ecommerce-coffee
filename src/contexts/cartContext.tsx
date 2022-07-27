@@ -6,7 +6,7 @@ type CartContextProviderProps = {
   children: React.ReactNode
 }
 
-type MapIdToAmountType = {
+export type MapIdToAmountType = {
   [key: string]: number
 }
 

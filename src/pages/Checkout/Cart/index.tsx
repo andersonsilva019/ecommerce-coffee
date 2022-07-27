@@ -6,9 +6,11 @@ import * as S from './styles'
 
 type CartProps = {
   itens: CoffeeItemCartProps[]
+  onSubmit: () => void
+  isSubmitting: boolean
 }
 
-export function Cart({ itens }: CartProps) {
+export function Cart({ itens, onSubmit, isSubmitting }: CartProps) {
 
   const { totalInCart } = useCart();
 
@@ -31,7 +33,9 @@ export function Cart({ itens }: CartProps) {
           <span>{formatPrice(totalInCart + DELIVERY_FEE)}</span>
         </S.Total>
       </S.CartInfo>
-      <S.ConfirmOrderButton>Confirmar pedido</S.ConfirmOrderButton>
+      <S.ConfirmOrderButton onClick={onSubmit} type="button">
+        {isSubmitting ? 'Aguarde...' : 'Confirmar pedido'}
+      </S.ConfirmOrderButton>
     </S.CartContainer>
   )
 }

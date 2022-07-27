@@ -64,18 +64,39 @@ const BaseInput = css`
   }
 `
 
-export const CEPInput = styled.input`
+type CepInputProps = {
+  isError?: boolean;
+}
+
+export const CepInput = styled.input<CepInputProps>`
   ${BaseInput}
 
   width: 100%;
   max-width: 12.5rem;
+
+  ${({ isError }) => isError && css`
+    border: 1px solid #f5222d;
+  `}
 `
 
-export const StreetInput = styled.input`
+type StreetInputProps = {
+  isError?: boolean;
+}
+
+export const StreetInput = styled.input<StreetInputProps>`
   ${BaseInput}
+
+  ${({ isError }) => isError && css`
+    border: 1px solid #f5222d;
+  `}
 `
 
-export const GroupOne = styled.div`
+type GroupOneProps = {
+  isErrorNumberInput?: boolean;
+  isErrorComplementInput?: boolean;
+}
+
+export const GroupOne = styled.div<GroupOneProps>`
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -83,31 +104,58 @@ export const GroupOne = styled.div`
 
   > input:first-child {
     ${BaseInput}
+
+    ${({ isErrorNumberInput }) => isErrorNumberInput && css`
+        border: 1px solid #f5222d;
+    `}
   }
 
   > input:last-child {
     ${BaseInput}
     flex: 1;
+
+    ${({ isErrorComplementInput }) => isErrorComplementInput && css`
+        border: 1px solid #f5222d;
+    `}
   }
 `
 
-export const GroupTwo = styled.div`
+type GroupTwoProps = {
+  isErrorCityInput?: boolean;
+  isErrorStateInput?: boolean;
+  isErrorNeighborhoodInput?: boolean;
+}
+
+
+export const GroupTwo = styled.div<GroupTwoProps>`
   display: flex;
   align-items: center;
   gap: 1rem;
 
   > input:nth-child(1) {
     ${BaseInput}
+
+    ${({ isErrorNeighborhoodInput }) => isErrorNeighborhoodInput && css`
+        border: 1px solid #f5222d;
+    `}
   }
 
   > input:nth-child(2) {
     ${BaseInput}
     flex: 1;
+
+    ${({ isErrorCityInput }) => isErrorCityInput && css`
+        border: 1px solid #f5222d;
+    `}
   }
 
   > input:nth-child(3) {
     ${BaseInput}
     width: 100%;
     max-width: 3.75rem;
+
+    ${({ isErrorStateInput }) => isErrorStateInput && css`
+        border: 1px solid #f5222d;
+    `}
   }
 `
