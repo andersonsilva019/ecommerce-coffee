@@ -38,7 +38,7 @@ const formSchema = Yup.object().shape({
 
 export function Checkout() {
   let navigate = useNavigate();
-  const { cartItens, mapIdToAmount } = useCart()
+  const { cartItens, mapIdToAmount, clearCart } = useCart()
   const { saveFormData } = useContext(FormContext)
 
   const [selectedPayment, setSelectedPayment] = useState<string[]>([])
@@ -73,6 +73,9 @@ export function Checkout() {
       saveFormData(formData);
 
       formik.setSubmitting(false);
+
+      clearCart();
+
       navigate("/order-success", { replace: true });
     }, 1000);
   }

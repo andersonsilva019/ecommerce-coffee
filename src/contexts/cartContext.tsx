@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useReducer } from 'react'
 import { CoffeeItemCartProps } from '../components/CoffeeItemCart'
+import { CartActionTypes, cartReducer } from '../reducers/cartReducer/cartReducer'
 import { stockService } from '../services/stock'
 
 type CartContextProviderProps = {
@@ -19,6 +20,7 @@ type CartContextType = {
   isInCart: (id: number) => boolean
   removeFromCart: (id: number) => void
   decrementAmount: (id: number) => void
+  clearCart: () => void
 }
 
 export const CartContext = createContext({} as CartContextType);
@@ -27,31 +29,38 @@ export const DELIVERY_FEE = 10;
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
 
-  const [cartItens, setCartItens] = useState<CoffeeItemCartProps[]>([])
-  const [mapIdToAmount, setMapIdToAmount] = useState<MapIdToAmountType>({})
+  const [state, dispatch] = useReducer(cartReducer, {
+    cartItens: [],
+    mapIdToAmount: {}
+  });
+
+
+  const { cartItens, mapIdToAmount } = state
 
   const totalInCart = cartItens.reduce((acc, item) => {
     return acc + (Number(item.price) * mapIdToAmount[item.id])
   }, 0);
 
+  function clearCart() {
+    dispatch({ type: CartActionTypes.CLEAR_CART })
+  }
 
   function isInCart(id: number) {
     return cartItens.find(item => item.id === id) ? true : false;
   }
 
   function addToCart(coffee: CoffeeItemCartProps, amount: number) {
-    const newCartItem = {
-      ...coffee,
-      amount
-    }
-
-    setCartItens([...cartItens, newCartItem]);
-    setMapIdToAmount({ ...mapIdToAmount, [coffee.id]: amount })
+    dispatch({
+      type: CartActionTypes.ADD_TO_CART,
+      payload: {
+        coffee,
+        amount
+      }
+    })
   }
 
   function removeFromCart(id: number) {
-    const newCartItens = cartItens.filter(item => item.id !== id);
-    setCartItens(newCartItens);
+    dispatch({ type: CartActionTypes.REMOVE_FROM_CART, payload: { id } })
   }
 
   async function incrementAmount(id: number) {
@@ -63,7 +72,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       const amountInStock = data.amount;
 
       if (newAmount <= amountInStock) {
-        setMapIdToAmount({ ...mapIdToAmount, [id]: newAmount })
+        dispatch({ type: CartActionTypes.INCREMENT_AMOUNT, payload: { id } })
       } else {
         alert('Não temos mais este produto no estoque')
       }
@@ -75,7 +84,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
   function decrementAmount(id: number) {
     if (mapIdToAmount[id] > 1) {
-      setMapIdToAmount({ ...mapIdToAmount, [id]: mapIdToAmount[id] - 1 })
+      dispatch({ type: CartActionTypes.DECREMENT_AMOUNT, payload: { id } })
     }
   }
 
@@ -88,7 +97,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       isInCart,
       removeFromCart,
       totalInCart,
-      decrementAmount
+      decrementAmount,
+      clearCart
     }}>
       {children}
     </CartContext.Provider>
