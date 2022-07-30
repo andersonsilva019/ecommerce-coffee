@@ -65,7 +65,7 @@ Na imagem abaixo podemos observar através do `profiler` da extensão react-devt
 
 ![render-with-use-context](./docs/render-with-use-context.png)
 
-Podemo observar todo esse comportamento ao selecionar a brach `main`. Agora vamos tornar nosso contexto mais performático. Note que na imagem abaixo, ao adicionar um café ao carrinho, apenas o componente 
+Podemos observar todo esse comportamento ao selecionar a brach `main`. Agora vamos tornar nosso contexto mais performático. Note que na imagem abaixo, ao adicionar um café ao carrinho, apenas o componente 
 
 
 ![render-with-use-context-selector](./docs/render-with-use-context-selector.png)
