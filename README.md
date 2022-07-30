@@ -4,9 +4,6 @@
     Encontre o café perfeito para qualquer hora do dia
 </h1>
 
-
-
-
 <p align="center">
 
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/andersonsilva019/ecommerce-coffee"/>
@@ -55,3 +52,26 @@ Para realizar a simulação de chamadas a API, foi utilizado o json-server confi
 - React Router
 - Json-server
 - Yup
+
+## Análise de performance na context API
+
+A Context API é uma API que permite a passagem de informações entre componentes. Como nem tudo são flores, a Context API contém suas desvantagens. Se vários componentes utilizam o contexto, qualquer eventos que cause a renderização nesse contexto, isso fará com que todos os componentes que dependem desse contexto também sejam renderizados.
+
+No diagrama abaixo podemos observar quais componentes fazem o uso das informações do contexto.
+
+![diagrama](./docs/diagram.png)
+
+Na imagem abaixo podemos observar através do `profiler` da extensão react-devtools, quais componentes são renderizados ao clicar no botão de adicionar um café ao carrinho. 
+
+![render-with-use-context](./docs/render-with-use-context.png)
+
+Podemo observar todo esse comportamento ao selecionar a brach `main`. Agora vamos tornar nosso contexto mais performático. Note que na imagem abaixo, ao adicionar um café ao carrinho, apenas o componente 
+
+
+![render-with-use-context-selector](./docs/render-with-use-context-selector.png)
+
+Dessa forma, o componente que está sendo renderizado é o componente que está sendo usado como selector. Isso é um bom exemplo de como podemos melhorar o desempenho da aplicação. 
+
+### Lib utilizada
+
+[https://github.com/dai-shi/use-context-selector](https://github.com/dai-shi/use-context-selector)
