@@ -1,4 +1,5 @@
-import { createContext, useReducer } from 'react'
+import { createContext } from 'use-context-selector'
+import { useReducer, useCallback } from 'react'
 import { CoffeeItemCartProps } from '../components/CoffeeItemCart'
 import { CartActionTypes, cartReducer } from '../reducers/cartReducer/cartReducer'
 import { stockService } from '../services/stock'
@@ -16,7 +17,7 @@ type CartContextType = {
   mapIdToAmount: MapIdToAmountType
   totalInCart: number
   addToCart: (coffee: CoffeeItemCartProps, amount: number) => void
-  incrementAmount: (id: number) => Promise<void>
+  incrementAmount: (id: number) => void
   isInCart: (id: number) => boolean
   removeFromCart: (id: number) => void
   decrementAmount: (id: number) => void
@@ -45,11 +46,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch({ type: CartActionTypes.CLEAR_CART })
   }
 
-  function isInCart(id: number) {
+  const isInCart = useCallback((id: number) => {
     return cartItens.find(item => item.id === id) ? true : false;
-  }
+  }, [cartItens])
 
-  function addToCart(coffee: CoffeeItemCartProps, amount: number) {
+  const addToCart = useCallback((coffee: CoffeeItemCartProps, amount: number) => {
     dispatch({
       type: CartActionTypes.ADD_TO_CART,
       payload: {
@@ -57,36 +58,40 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         amount
       }
     })
-  }
+  }, [])
 
-  function removeFromCart(id: number) {
+  const removeFromCart = useCallback((id: number) => {
     dispatch({ type: CartActionTypes.REMOVE_FROM_CART, payload: { id } })
-  }
+  }, [])
 
-  async function incrementAmount(id: number) {
-    try {
-      const newAmount = mapIdToAmount[id] + 1
+  const incrementAmount = useCallback((id: number) => {
+    async function incrementAmount(id: number) {
+      try {
+        const newAmount = mapIdToAmount[id] + 1
 
-      const data = await stockService.verifyStock(id);
+        const data = await stockService.verifyStock(id);
 
-      const amountInStock = data.amount;
+        const amountInStock = data.amount;
 
-      if (newAmount <= amountInStock) {
-        dispatch({ type: CartActionTypes.INCREMENT_AMOUNT, payload: { id } })
-      } else {
-        alert('Não temos mais este produto no estoque')
+        if (newAmount <= amountInStock) {
+          dispatch({ type: CartActionTypes.INCREMENT_AMOUNT, payload: { id } })
+        } else {
+          alert('Não temos mais este produto no estoque')
+        }
+
+      } catch (error) {
+        console.log(error)
       }
-
-    } catch (error) {
-      console.log(error)
     }
-  }
 
-  function decrementAmount(id: number) {
+    incrementAmount(id);
+  }, [mapIdToAmount])
+
+  const decrementAmount = useCallback((id: number) => {
     if (mapIdToAmount[id] > 1) {
       dispatch({ type: CartActionTypes.DECREMENT_AMOUNT, payload: { id } })
     }
-  }
+  }, [mapIdToAmount]);
 
   return (
     <CartContext.Provider value={{
