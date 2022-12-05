@@ -2,18 +2,22 @@
 
 import React from "react";
 import { render } from "@testing-library/react";
-
+import { ThemeProvider } from 'styled-components'
+import { defaultTheme } from "./src/styles/theme/default";
 
 const customRender = (ui: React.ReactElement, options = {}) =>
 
-  render(ui, {
+  render(
+    <ThemeProvider theme={defaultTheme}>
+      {ui}
+    </ThemeProvider>
+    , {
 
-    wrapper: ({ children }) => children,
+      wrapper: ({ children }) => children,
 
-    ...options,
+      ...options,
 
-  });
-
+    });
 
 export * from "@testing-library/react";
 
