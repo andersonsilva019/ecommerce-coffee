@@ -46,6 +46,7 @@ export function cartReducer(state: CartReducerState, action: CartReducerAction) 
       return {
         ...state,
         cartItens: state.cartItens.filter(coffee => coffee.id !== id),
+        mapIdToAmount: { ...state.mapIdToAmount, [id]: 0 }
       }
     }
 
