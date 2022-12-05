@@ -8,10 +8,10 @@ type CartContextProviderProps = {
 }
 
 export type MapIdToAmountType = {
-  [key: string]: number
+  [key: number]: number
 }
 
-type CartContextType = {
+export type CartContextType = {
   cartItens: CoffeeItemCartProps[]
   mapIdToAmount: MapIdToAmountType
   totalInCart: number
