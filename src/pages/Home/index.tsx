@@ -51,7 +51,7 @@ export function Home() {
       try {
         const data = await coffeeService.getCoffees()
 
-        setCoffees(data.map(coffee => ({
+        setCoffees(data?.map(coffee => ({
           ...coffee,
           amount: 1
         })));
