@@ -12,7 +12,7 @@ export function Header() {
   return (
     <S.HeaderContainer>
       <Link to="/">
-        <img src={logo} alt="" />
+        <img src={logo} alt="logo" />
       </Link>
 
       <S.RightSide>
@@ -22,7 +22,7 @@ export function Header() {
         </S.Locale>
         <Link to="/checkout">
           <S.Cart>
-            {cartItens.length > 0 && <S.TotalCart>{cartItens.length}</S.TotalCart>}
+            {cartItens.length > 0 && <S.TotalCart data-testid="totalInCart">{cartItens.length}</S.TotalCart>}
             <ShoppingCart size={24} weight="fill" color="#C47F17" />
           </S.Cart>
         </Link>
