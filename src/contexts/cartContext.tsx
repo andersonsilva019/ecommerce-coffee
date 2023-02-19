@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react'
+import { createContext, useCallback, useReducer } from 'react'
 import { CoffeeItemCartProps } from '../components/CoffeeItemCart'
 import { CartActionTypes, cartReducer } from '../reducers/cartReducer/cartReducer'
 import { stockService } from '../services/stock'
@@ -23,7 +23,20 @@ export type CartContextType = {
   clearCart: () => void
 }
 
-export const CartContext = createContext({} as CartContextType);
+export const cartContextDefaultValue: CartContextType = {
+  cartItens: [],
+  mapIdToAmount: {},
+  totalInCart: 0,
+  addToCart: () => null,
+  incrementAmount: () => Promise.resolve(),
+  isInCart: () => false,
+  removeFromCart: () => null,
+  decrementAmount: () => null,
+  clearCart: () => null
+}
+
+
+export const CartContext = createContext(cartContextDefaultValue);
 
 export const DELIVERY_FEE = 10;
 
@@ -45,11 +58,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch({ type: CartActionTypes.CLEAR_CART })
   }
 
-  function isInCart(id: number) {
+  const isInCart = useCallback((id: number) => {
     return cartItens.find(item => item.id === id) ? true : false;
-  }
+  }, [cartItens])
 
-  function addToCart(coffee: CoffeeItemCartProps, amount: number) {
+  const addToCart = useCallback((coffee: CoffeeItemCartProps, amount: number) => {
     dispatch({
       type: CartActionTypes.ADD_TO_CART,
       payload: {
@@ -57,13 +70,13 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         amount
       }
     })
-  }
+  },[])
 
-  function removeFromCart(id: number) {
+  const removeFromCart = useCallback((id: number) => {
     dispatch({ type: CartActionTypes.REMOVE_FROM_CART, payload: { id } })
-  }
+  }, [])
 
-  async function incrementAmount(id: number) {
+  const incrementAmount = useCallback(async (id: number) => {
     try {
       const newAmount = mapIdToAmount[id] + 1
 
@@ -80,13 +93,13 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     } catch (error) {
       console.log(error)
     }
-  }
+  }, [mapIdToAmount])
 
-  function decrementAmount(id: number) {
+  const decrementAmount = useCallback((id: number) => {
     if (mapIdToAmount[id] > 1) {
       dispatch({ type: CartActionTypes.DECREMENT_AMOUNT, payload: { id } })
     }
-  }
+  },[mapIdToAmount])
 
   return (
     <CartContext.Provider value={{

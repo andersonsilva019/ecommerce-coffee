@@ -53,6 +53,14 @@ Para realizar a simulação de chamadas a API, foi utilizado o json-server confi
 - Json-server
 - Yup
 
+## Funcionalidades
+
+ - Listagem dos cafés
+ - API faker com json-server
+ - Verificação de estoque
+ - Validação de formulário com formik e yup
+ - Utilização de context API com useContext e useReducer para gerenciar o carrinho de compras
+
 ## Análise de performance na context API
 
 A Context API é uma API que permite a passagem de informações entre componentes. Como nem tudo são flores, a Context API contém suas desvantagens. Se vários componentes utilizam o contexto, qualquer eventos que cause a renderização nesse contexto, isso fará com que todos os componentes que dependem desse contexto também sejam renderizados.
@@ -72,6 +80,8 @@ Podemos observar todo esse comportamento ao selecionar a brach `main`. Agora vam
 
 Dessa forma, o componente que está sendo renderizado é o componente que está sendo usado como selector. Isso é um bom exemplo de como podemos melhorar o desempenho da aplicação. 
 
-### Lib utilizada
+## Lib utilizada
 
 [https://github.com/dai-shi/use-context-selector](https://github.com/dai-shi/use-context-selector)
+
+## Demonstração

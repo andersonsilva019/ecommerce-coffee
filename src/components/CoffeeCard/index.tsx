@@ -45,7 +45,7 @@ export function CoffeeCard({
       } else {
         alert('Não temos mais este produto no estoque');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
     }
   }
@@ -103,7 +103,7 @@ export function CoffeeCard({
             <span>{currentAmount}</span>
             <S.AmountButton onClick={incrementAmount}>+</S.AmountButton>
           </S.Amount>
-          <S.AddToCartButton onClick={addCoffeeToCart}>
+          <S.AddToCartButton data-testid="AddToCartButton" onClick={addCoffeeToCart}>
             <ShoppingCart size={18} weight="fill" color="#F3F2F2" />
           </S.AddToCartButton>
         </S.CoffeeCardFooterRightSide>) : (
