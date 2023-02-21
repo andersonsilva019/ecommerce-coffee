@@ -1,13 +1,16 @@
 import { Home } from "."
-import { render, screen, waitFor, act } from "../../../test-utils"
-import { coffeeService } from '../../services/coffees'
-import { coffeesMock } from "./mock"
+import { render, screen, act } from "../../../test-utils"
+import { server } from "../../mocks/server"
 
-vi.mock('../../services/coffees')
+beforeAll(() => server.listen())
+
+afterEach(() => server.resetHandlers())
+
+afterAll(() => server.close())
 
 vi.mock('../../components/CoffeeCard', () => {
   return {
-    CoffeeCard: ({ id, name }: { id: number, name: string }) => (
+    CoffeeCard: ({ name }: { name: string }) => (
       <div data-testid="coffee-card" >
         <span>{name}</span>
       </div>
@@ -28,21 +31,12 @@ describe('Home', () => {
 
   it('should render coffee cards', async () => {
 
-    coffeeService.getCoffees = vi.fn().mockResolvedValue(coffeesMock)
-
-    act(() => {
-      const { debug } = render(<Home />);
-    })
-
-    //const cards = await waitFor(() => screen.getAllByTestId('coffee-card'))
-
+    render(<Home />);
 
     const cards = await screen.findAllByTestId('coffee-card')
 
     expect(cards).toHaveLength(2)
     expect(cards[0]).toHaveTextContent('Expresso Tradicional')
     expect(cards[1]).toHaveTextContent('Expresso Americano')
-
-    expect(coffeeService.getCoffees).toHaveBeenCalledTimes(1)
   })
 })
